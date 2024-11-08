@@ -1,0 +1,106 @@
+{
+    "type": "function",
+    "function": {
+        "name": "create_event",
+        "description": "Create a calendar event with the provided details.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "summary": {
+                    "type": "string",
+                    "description": "The summary or title of the event."
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location of the event."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the event."
+                },
+                "start": {
+                    "type": "object",
+                    "properties": {
+                        "date": {
+                            "type": "string",
+                            "description": "The start date of the event yyyy-mm-dd format."
+                        },
+                        "dateTime": {
+                            "type": "string",
+                            "description": "The start date and time of the event in ISO 8601 format."
+                        },
+                        "timeZone": {
+                            "type": "string",
+                            "description": "The time zone of the start time."
+                        }
+                    },
+                    "required": ["timeZone"]
+                },
+                "end": {
+                    "type": "object",
+                    "properties": {
+                        "date": {
+                            "type": "string",
+                            "description": "The end time of the event yyyy-mm-dd format."
+                        },
+                        "dateTime": {
+                            "type": "string",
+                            "description": "The end date and time of the event in ISO 8601 format."
+                        },
+                        "timeZone": {
+                            "type": "string",
+                            "description": "The time zone of the end time."
+                        }
+                    },
+                    "required": ["timeZone"]
+                },
+                "recurrence": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "description": "Recurrence rule for the event."
+                    }
+                },
+                "attendees": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "description": "Email address of the attendee."
+                            }
+                        }
+                    }
+                },
+                "reminders": {
+                    "type": "object",
+                    "properties": {
+                        "useDefault": {
+                            "type": "boolean",
+                            "description": "Whether to use the default reminders."
+                        },
+                        "overrides": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "method": {
+                                        "type": "string",
+                                        "description": "The method of the reminder (e.g., email, popup)."
+                                    },
+                                    "minutes": {
+                                        "type": "integer",
+                                        "description": "Number of minutes before the event when the reminder should trigger."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "required": ["summary", "start", "end"],
+            "additionalProperties": false
+        }
+    }
+}
