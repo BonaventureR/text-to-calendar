@@ -1,3 +1,4 @@
+import traceback
 from typing import Optional
 from event import EventBuilder
 from gcal import Calendar
@@ -22,8 +23,8 @@ class EventScheduler:
             event = self.event_builder.build_event(query)
             link = self.calendar.create_event(event)
             return link
-        except Exception as e:
-            print(f"Failed to schedule meeting: {str(e)}")
+        except Exception:
+            print(traceback.format_exc())
             return None
 
 
